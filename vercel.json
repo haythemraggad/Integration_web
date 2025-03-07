@@ -1,7 +1,7 @@
 {
   "version": 2,
   "public": true,
-  "buildCommand": "npm run build:css",
+  "buildCommand": "node vercel-build.js",
   "outputDirectory": ".",
   "installCommand": "npm install",
   "framework": null,

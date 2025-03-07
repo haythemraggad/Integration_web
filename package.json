@@ -4,12 +4,12 @@
   "description": "A responsive medical products e-commerce website UI built with HTML, Tailwind CSS, and JavaScript.",
   "main": "index.js",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./css/tailwind.css -o ./css/styles.css",
-    "watch:css": "npx tailwindcss -i ./css/tailwind.css -o ./css/styles.css --watch",
+    "build:css": "tailwindcss -i ./css/tailwind.css -o ./css/styles.css",
+    "watch:css": "tailwindcss -i ./css/tailwind.css -o ./css/styles.css --watch",
     "dev": "npm run watch:css",
     "verify": "node build-verification.js",
-    "build": "npx tailwindcss -i ./css/tailwind.css -o ./css/styles.css",
-    "vercel-build": "npx tailwindcss -i ./css/tailwind.css -o ./css/styles.css",
+    "build": "tailwindcss -i ./css/tailwind.css -o ./css/styles.css",
+    "vercel-build": "tailwindcss -i ./css/tailwind.css -o ./css/styles.css",
     "serve": "live-server --port=3000",
     "start": "npm run serve",
     "test": "echo \"Error: no test specified\" && exit 0"
@@ -17,11 +17,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "tailwindcss": "^4.0.11",
     "autoprefixer": "^10.4.20",
-    "live-server": "^1.2.2",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.11"
+    "postcss": "^8.5.3"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   },
   "engines": {
     "node": ">=14.0.0",
