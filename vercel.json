@@ -1,16 +1,11 @@
 {
   "version": 2,
   "public": true,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "."
-      }
-    }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/$1" }
+  "buildCommand": "npm run build:css",
+  "outputDirectory": ".",
+  "installCommand": "npm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/$1" }
   ]
 }
