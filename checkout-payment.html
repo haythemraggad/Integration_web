@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Payment - Medicare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add scripts -->
+    <script src="js/cart.js" defer></script>
+    <script src="js/wishlist.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Header -->
+    <header class="container mx-auto py-4 px-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <a href="service.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-concierge-bell mr-1"></i>Service
+                </a>
+                <a href="shop.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-store mr-1"></i>Shop
+                </a>
+                <a href="contact.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-phone-alt mr-1"></i>Contact
+                </a>
+            </nav>
+            <div class="flex space-x-4">
+                <div class="relative">
+                    <a href="wishlist.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-heart text-green-500 hover:text-white"></i>
+                        <span class="wishlist-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <div class="relative">
+                    <a href="cart.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-shopping-cart text-green-500 hover:text-white"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <a href="login.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-user text-green-500 hover:text-white"></i>
+                </a>
+                <a href="#" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-globe text-green-500 hover:text-white"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Steps -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-center items-center mb-8">
+            <div class="relative flex items-center">
+                <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold">1</div>
+                <div class="ml-2 text-green-500 font-medium">Select Address</div>
+            </div>
+            <div class="w-16 h-1 bg-green-500 mx-3"></div>
+            <div class="relative flex items-center">
+                <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold">2</div>
+                <div class="ml-2 text-green-500 font-medium">Checkout</div>
+            </div>
+        </div>
+
+        <!-- Checkout Content -->
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Left side - Payment Methods -->
+            <div class="md:w-2/3">
+                <h2 class="text-xl font-semibold mb-4">Payment Method</h2>
+                
+                <!-- Credit Card Option -->
+                <div class="border border-green-500 rounded-lg mb-4 overflow-hidden">
+                    <div class="flex items-center bg-white p-4">
+                        <div class="flex items-center">
+                            <input type="radio" id="creditCard" name="paymentMethod" checked class="w-4 h-4 text-green-500 focus:ring-green-400" data-payment-type="creditCard">
+                            <label for="creditCard" class="ml-2 text-md font-medium">Credit or Debit card</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Credit Card Form -->
+                    <div class="bg-white p-4 border-t border-gray-200 payment-form" id="creditCard-form">
+                        <div class="mb-4">
+                            <label for="cardNumber" class="block text-sm font-medium text-gray-700 mb-1">Card Number <span class="text-red-500">*</span></label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" required pattern="[0-9]{16}">
+                            <p class="text-red-500 text-xs mt-1 hidden error-message" id="cardNumber-error">Valid 16-digit card number is required</p>
+                            
+                            <div class="grid grid-cols-3 gap-4 mt-4">
+                                <div class="col-span-1">
+                                    <label for="expDate" class="block text-sm font-medium text-gray-700 mb-1">Expiry Date <span class="text-red-500">*</span></label>
+                                    <input type="text" id="expDate" placeholder="MM/YY" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" required pattern="(0[1-9]|1[0-2])\/[0-9]{2}">
+                                    <p class="text-red-500 text-xs mt-1 hidden error-message" id="expDate-error">Valid expiry date (MM/YY) required</p>
+                                </div>
+                                <div class="col-span-1">
+                                    <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">CVV <span class="text-red-500">*</span></label>
+                                    <input type="text" id="cvv" placeholder="123" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" required pattern="[0-9]{3,4}">
+                                    <p class="text-red-500 text-xs mt-1 hidden error-message" id="cvv-error">Valid 3-4 digit CVV required</p>
+                                </div>
+                                <div class="col-span-1">
+                                    <label for="zipCode" class="block text-sm font-medium text-gray-700 mb-1">Zip Code <span class="text-red-500">*</span></label>
+                                    <input type="text" id="zipCode" placeholder="12345" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" required pattern="[0-9]{5}">
+                                    <p class="text-red-500 text-xs mt-1 hidden error-message" id="zipCode-error">5-digit zip code required</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center mt-4">
+                                <input type="checkbox" id="saveCard" class="w-4 h-4 rounded text-green-500 focus:ring-green-400">
+                                <label for="saveCard" class="ml-2 text-sm text-gray-700">Save the credit card for later use</label>
+                            </div>
+                            
+                            <div class="flex items-center mt-2">
+                                <input type="checkbox" id="sameAddress" class="w-4 h-4 rounded text-green-500 focus:ring-green-400">
+                                <label for="sameAddress" class="ml-2 text-sm text-gray-700">Billing address same as shipping address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PayPal Option -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <div class="flex items-center bg-white p-4 justify-between">
+                        <div class="flex items-center">
+                            <input type="radio" id="paypal" name="paymentMethod" class="w-4 h-4 text-green-500 focus:ring-green-400" data-payment-type="paypal">
+                            <label for="paypal" class="ml-2 text-md font-medium">PayPal</label>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" alt="PayPal" class="h-6 w-16 object-contain">
+                    </div>
+                    
+                    <!-- PayPal Form -->
+                    <div class="bg-white p-4 border-t border-gray-200 payment-form hidden" id="paypal-form">
+                        <div class="mb-4">
+                            <label for="paypalEmail" class="block text-sm font-medium text-gray-700 mb-1">PayPal Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="paypalEmail" placeholder="your-email@example.com" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" required>
+                            <p class="text-red-500 text-xs mt-1 hidden error-message" id="paypalEmail-error">Valid PayPal email is required</p>
+                            
+                            <p class="text-sm text-gray-600 mt-4">
+                                You will be redirected to PayPal to complete your payment securely.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cryptocurrency Option -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <div class="flex items-center bg-white p-4 justify-between">
+                        <div class="flex items-center">
+                            <input type="radio" id="bitcoin" name="paymentMethod" class="w-4 h-4 text-green-500 focus:ring-green-400" data-payment-type="bitcoin">
+                            <label for="bitcoin" class="ml-2 text-md font-medium">Cryptocurrency</label>
+                        </div>
+                        <div class="flex">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" class="h-6 w-6 object-contain mr-2">
+                            <img src="https://ethereum.org/static/6b935ac0e6194247347855dc3d328e83/13c43/eth-diamond-black.png" alt="Ethereum" class="h-6 w-6 object-contain mr-2">
+                            <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" alt="Litecoin" class="h-6 w-6 object-contain mr-2">
+                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="h-6 w-6 object-contain">
+                        </div>
+                    </div>
+                    
+                    <!-- Cryptocurrency Form -->
+                    <div class="bg-white p-4 border-t border-gray-200 payment-form hidden" id="bitcoin-form">
+                        <div class="mb-4">
+                            <label for="cryptoType" class="block text-sm font-medium text-gray-700 mb-1">Select Cryptocurrency <span class="text-red-500">*</span></label>
+                            <select id="cryptoType" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" required>
+                                <option value="">Select your preferred cryptocurrency</option>
+                                <option value="BTC">Bitcoin (BTC)</option>
+                                <option value="ETH">Ethereum (ETH)</option>
+                                <option value="LTC">Litecoin (LTC)</option>
+                                <option value="USDT">Tether (USDT-TRC20)</option>
+                            </select>
+                            <p class="text-red-500 text-xs mt-1 hidden error-message" id="cryptoType-error">Please select a cryptocurrency</p>
+                            
+                            <label for="cryptoEmail" class="block text-sm font-medium text-gray-700 mb-1 mt-4">Your Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="cryptoEmail" placeholder="For payment notifications" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" required>
+                            <p class="text-red-500 text-xs mt-1 hidden error-message" id="cryptoEmail-error">Valid email is required for payment notifications</p>
+                            
+                            <div class="mt-4 bg-gray-100 p-3 rounded-md">
+                                <p class="text-sm font-medium text-gray-700">Payment Information:</p>
+                                <ul class="text-sm text-gray-600 mt-1 list-disc pl-5 space-y-1">
+                                    <li>Fixed price: $12 USD for all purchases</li>
+                                    <li>After clicking "Place Order", you will receive payment instructions</li>
+                                    <li>Your order will be processed once payment is confirmed</li>
+                                    <li>Payment status: waiting → confirming → confirmed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side - Order Summary -->
+            <div class="md:w-1/3">
+                <div class="bg-gray-100 p-6 rounded-md">
+                    <button id="placeOrderButton" class="w-full bg-green-500 text-white py-3 rounded-md font-medium hover:bg-green-600 transition-colors duration-300 mb-4">
+                        Place Order
+                    </button>
+
+                    <p class="text-sm text-gray-600 mb-6">
+                        By placing your order, you agree to our company
+                        <a href="#" class="text-green-500 hover:underline">Privacy policy</a> and 
+                        <a href="#" class="text-green-500 hover:underline">Conditions of use</a>.
+                    </p>
+
+                    <hr class="my-4 border-gray-300">
+
+                    <h3 class="font-semibold text-lg mb-4">Order Summary</h3>
+
+                    <!-- Cart Items Display -->
+                    <div id="cart-items-summary" class="mb-4">
+                        <!-- Cart items will be displayed here -->
+                    </div>
+
+                    <div class="space-y-2" id="orderSummary">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Items (<span id="itemCount">0</span>)</span>
+                            <span class="font-medium">$<span id="itemsTotal">0.00</span></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Shipping and handling</span>
+                            <span class="font-medium">$<span id="shippingCost">5.00</span></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Before tax</span>
+                            <span class="font-medium">$<span id="subtotal">0.00</span></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Tax Collected</span>
+                            <span class="font-medium">$<span id="taxAmount">0.00</span></span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 border-gray-300">
+
+                    <div class="flex justify-between font-semibold text-lg">
+                        <span>Order Total:</span>
+                        <span>$<span id="orderTotal">0.00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">About Us</h3>
+                    <p class="text-gray-400 text-sm">
+                        Medicare+ is dedicated to providing high-quality healthcare products and services to improve your wellbeing.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">Shop</a></li>
+                        <li><a href="#" class="hover:text-white">Services</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Return Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Subscribe to our newsletter for updates and special offers.
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400 text-center">
+                <p> 2023 Medicare+. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update wishlist and cart counts
+            if (typeof updateWishlistCount === 'function') {
+                updateWishlistCount();
+            }
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+            
+            // Handle payment method selection
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const paymentForms = document.querySelectorAll('.payment-form');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    // Hide all payment forms
+                    paymentForms.forEach(form => {
+                        form.classList.add('hidden');
+                    });
+                    
+                    // Show the selected payment form
+                    const paymentType = this.getAttribute('data-payment-type');
+                    const selectedForm = document.getElementById(`${paymentType}-form`);
+                    if (selectedForm) {
+                        selectedForm.classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // Initialize - show the checked payment method form
+            const checkedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (checkedMethod) {
+                const paymentType = checkedMethod.getAttribute('data-payment-type');
+                const selectedForm = document.getElementById(`${paymentType}-form`);
+                if (selectedForm) {
+                    selectedForm.classList.remove('hidden');
+                }
+            }
+            
+            // Check if shipping address exists
+            const shippingAddress = JSON.parse(localStorage.getItem('shippingAddress') || '{}');
+            if (!shippingAddress.firstName) {
+                alert('Please select a shipping address first');
+                window.location.href = 'checkout-address.html';
+                return;
+            }
+            
+            // Get cart items and update order summary
+            const cartItems = getCartItems();
+            if (cartItems.length === 0) {
+                alert('Your cart is empty');
+                window.location.href = 'cart.html';
+                return;
+            }
+            
+            // Calculate order summary
+            const itemsTotal = calculateCartTotal();
+            const shippingCost = 5.00;
+            const subtotal = itemsTotal + shippingCost;
+            const taxRate = 0.13; // 13% tax rate
+            const taxAmount = subtotal * taxRate;
+            const orderTotal = subtotal + taxAmount;
+            
+            // Update order summary on page
+            document.getElementById('itemCount').textContent = cartItems.length;
+            document.getElementById('itemsTotal').textContent = itemsTotal.toFixed(2);
+            document.getElementById('shippingCost').textContent = shippingCost.toFixed(2);
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('taxAmount').textContent = taxAmount.toFixed(2);
+            document.getElementById('orderTotal').textContent = orderTotal.toFixed(2);
+            
+            // Display cart items
+            const cartItemsContainer = document.getElementById('cart-items-summary');
+            cartItemsContainer.innerHTML = '';
+            
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex justify-between items-center py-2 border-b';
+                itemDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <img src="${item.image}" alt="${item.name}" class="w-10 h-10 object-cover rounded mr-2">
+                        <div>
+                            <p class="text-sm font-medium">${item.name}</p>
+                            <p class="text-xs text-gray-500">Qty: ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <div class="text-sm font-medium">${item.currency} ${(item.price * item.quantity).toFixed(2)}</div>
+                `;
+                cartItemsContainer.appendChild(itemDiv);
+            });
+            
+            // Handle place order button
+            document.getElementById('placeOrderButton').addEventListener('click', function() {
+                // Validate form based on selected payment method
+                const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+                const paymentType = selectedMethod.getAttribute('data-payment-type');
+                
+                // Hide all error messages first
+                const errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(msg => msg.classList.add('hidden'));
+                
+                // Get the form for the selected payment method
+                const paymentForm = document.getElementById(`${paymentType}-form`);
+                let isValid = true;
+                
+                if (paymentForm) {
+                    const requiredFields = paymentForm.querySelectorAll('input[required], select[required]');
+                    
+                    // Check each required field
+                    requiredFields.forEach(field => {
+                        // Reset field styling
+                        field.classList.remove('border-red-500');
+                        
+                        // For pattern validation
+                        if (field.pattern && field.value) {
+                            const regex = new RegExp(`^${field.pattern}$`);
+                            if (!regex.test(field.value)) {
+                                isValid = false;
+                                field.classList.add('border-red-500');
+                                const errorMsg = document.getElementById(`${field.id}-error`);
+                                if (errorMsg) errorMsg.classList.remove('hidden');
+                            }
+                        }
+                        
+                        // For required validation
+                        if (!field.value.trim()) {
+                            isValid = false;
+                            field.classList.add('border-red-500');
+                            const errorMsg = document.getElementById(`${field.id}-error`);
+                            if (errorMsg) errorMsg.classList.remove('hidden');
+                        }
+                        
+                        // Special validation for email
+                        if (field.type === 'email' && field.value) {
+                            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (!emailRegex.test(field.value)) {
+                                isValid = false;
+                                field.classList.add('border-red-500');
+                                const errorMsg = document.getElementById(`${field.id}-error`);
+                                if (errorMsg) errorMsg.classList.remove('hidden');
+                            }
+                        }
+                    });
+                }
+                
+                if (!isValid) {
+                    return; // Stop if form is invalid
+                }
+                
+                // Get selected payment method
+                let paymentMethod = 'Credit Card';
+                let paymentDetails = {};
+                
+                if (document.getElementById('paypal').checked) {
+                    paymentMethod = 'PayPal';
+                    if (document.getElementById('paypalEmail')) {
+                        paymentDetails.email = document.getElementById('paypalEmail').value;
+                    }
+                } else if (document.getElementById('bitcoin').checked) {
+                    const cryptoType = document.getElementById('cryptoType').value;
+                    paymentMethod = `Cryptocurrency (${cryptoType})`;
+                    paymentDetails.crypto = cryptoType;
+                    paymentDetails.email = document.getElementById('cryptoEmail').value;
+                } else if (document.getElementById('creditCard').checked) {
+                    paymentDetails.cardNumber = document.getElementById('cardNumber').value.slice(-4);
+                    paymentDetails.expDate = document.getElementById('expDate').value;
+                }
+                
+                // Generate reference number (random)
+                const refNumber = Math.floor(100000000000 + Math.random() * 900000000000).toString();
+                
+                // Get current date and format it
+                const now = new Date();
+                const formattedDate = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth()+1).toString().padStart(2, '0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                
+                // Create simplified cart items for URL
+                const simplifiedItems = cartItems.map(item => ({
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                    currency: item.currency
+                }));
+                
+                // Build URL with payment details for success page
+                const successUrl = `payment-success.html?amount=${orderTotal.toFixed(2)}&refNum=${refNumber}&time=${encodeURIComponent(formattedDate)}&method=${encodeURIComponent(paymentMethod)}&name=${encodeURIComponent(shippingAddress.firstName + ' ' + shippingAddress.lastName)}&items=${encodeURIComponent(JSON.stringify(simplifiedItems))}`;
+                
+                // Process payment (simulate with setTimeout)
+                document.getElementById('placeOrderButton').disabled = true;
+                document.getElementById('placeOrderButton').textContent = 'Processing...';
+                
+                setTimeout(function() {
+                    // Clear cart after successful payment
+                    clearCart();
+                    
+                    // Redirect to success page
+                    window.location.href = successUrl;
+                }, 1500);
+                
+                // Create a cryptocurrency payment if that method is selected
+                if (document.getElementById('bitcoin').checked && isValid) {
+                    // This would typically call your backend API
+                    const createCryptoPayment = {
+                        currency: document.getElementById('cryptoType').value,
+                        email: document.getElementById('cryptoEmail').value,
+                        amount: 12, // Fixed price $12 USD as mentioned in requirements
+                        orderId: refNumber
+                    };
+                    
+                    console.log('Cryptocurrency payment details:', createCryptoPayment);
+                    
+                    // In a real implementation, this would call your backend:
+                    // fetch('/api/create-payment', {
+                    //     method: 'POST',
+                    //     headers: { 'Content-Type': 'application/json' },
+                    //     body: JSON.stringify(createCryptoPayment)
+                    // })
+                    // .then(response => response.json())
+                    // .then(data => {
+                    //     // Store payment ID for status checking
+                    //     localStorage.setItem('cryptoPaymentId', data.paymentId);
+                    // });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

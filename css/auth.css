@@ -1,0 +1,100 @@
+/* Auth pages styling - for login and registration */
+
+.bg-gray-50 {
+    background-color: #fafafa;
+}
+
+/* Form container styling */
+section > div.bg-white {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+/* Form inputs */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    height: 48px;
+    border-radius: 6px;
+    border-color: #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+    border-color: #10B981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+/* Submit button */
+form button[type="submit"] {
+    height: 48px;
+    font-weight: 500;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+/* Checkbox custom styling */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #10B981;
+    border-color: #10B981;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    top: 2px;
+    left: 5px;
+    transform: rotate(45deg);
+}
+
+/* Password visibility toggle */
+.far.fa-eye {
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+/* Links styling */
+a.text-green-500 {
+    font-weight: 500;
+}
+
+/* Form headings */
+h1 {
+    color: #1f2937;
+}
+
+/* Add some spacing adjustment for the page layout */
+body.bg-gray-50 {
+    min-height: 100vh;
+}
+
+/* Add responsive adjustments */
+@media (max-width: 640px) {
+    section > div.bg-white {
+        margin: 0 16px;
+    }
+}

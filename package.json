@@ -1,0 +1,24 @@
+{
+  "name": "integrtaionweb",
+  "version": "1.0.0",
+  "description": "A responsive medical products e-commerce website UI built with HTML, Tailwind CSS, and JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./css/tailwind.css -o ./css/styles.css",
+    "watch:css": "npx tailwindcss -i ./css/tailwind.css -o ./css/styles.css --watch",
+    "dev": "npm run watch:css",
+    "build": "npm run build:css",
+    "serve": "live-server --port=3000",
+    "start": "npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "live-server": "^1.2.2",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.11"
+  }
+}
