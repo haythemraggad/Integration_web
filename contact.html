@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Medicare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add scripts -->
+    <script src="js/cart.js" defer></script>
+    <script src="js/wishlist.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body class="bg-white font-sans text-gray-800">
+    <!-- Header -->
+    <header class="container mx-auto py-4 px-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <a href="service.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-concierge-bell mr-1"></i>Service
+                </a>
+                <a href="shop.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-store mr-1"></i>Shop
+                </a>
+                <a href="contact.html" class="text-green-500 border-b-2 border-green-500 font-medium flex items-center">
+                    <i class="fas fa-phone-alt mr-1"></i>Contact
+                </a>
+            </nav>
+            <div class="flex space-x-4">
+                <div class="relative">
+                    <a href="wishlist.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-heart text-green-500 hover:text-white"></i>
+                        <span class="wishlist-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <div class="relative">
+                    <a href="cart.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-shopping-cart text-green-500 hover:text-white"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <a href="login.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-user text-green-500 hover:text-white"></i>
+                </a>
+                <a href="#" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-globe text-green-500 hover:text-white"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-green-50 py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">We're here to help! Reach out to us with any questions, feedback, or concerns.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <!-- Contact Information Card -->
+                <div class="bg-white rounded-lg shadow-lg p-8 md:w-1/3">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <div class="mb-4">
+                            <i class="fas fa-envelope text-green-500 text-4xl"></i>
+                        </div>
+                        <h3 class="text-center font-medium text-lg">Medicare@gmail.com</h3>
+                        <p class="text-center text-gray-600">Help-Medicare@gmail.com</p>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 my-6"></div>
+                    
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="mb-4">
+                            <i class="fas fa-phone text-green-500 text-4xl"></i>
+                        </div>
+                        <h3 class="text-center font-medium text-lg">75 755 755</h3>
+                        <p class="text-center text-gray-600">74 744 744</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Form Card -->
+                <div class="bg-white rounded-lg shadow-lg p-8 md:w-1/2">
+                    <h2 class="text-2xl font-semibold mb-4">Just Say Hello!</h2>
+                    <p class="text-gray-600 mb-6">Do you fancy saying hi to me or you want to get started with your project and you need my help? Feel free to contact me.</p>
+                    
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Your Name*" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="example@example.com*" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Hello*" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <textarea placeholder="Subjects*" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors duration-300">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="bg-gray-200 h-96 rounded-lg">
+                <!-- Replace with actual map embed code -->
+                <div class="w-full h-full flex items-center justify-center">
+                    <p class="text-gray-500">Map placeholder - Replace with actual map embed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t mt-8 pt-8 pb-16">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between flex-col md:flex-row">
+                <div class="mb-6 md:mb-0">
+                    <div class="logo-container mb-4">
+                        <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                    </div>
+                    <div class="footer-info space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Address</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Call Us</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Email</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-medium mb-4">Account</h3>
+                    <ul class="space-y-2">
+                        <li><a href="login.html" class="text-sm text-gray-600 hover:text-green-500">Sign In</a></li>
+                        <li><a href="cart.html" class="text-sm text-gray-600 hover:text-green-500">View Cart</a></li>
+                        <li><a href="wishlist.html" class="text-sm text-gray-600 hover:text-green-500">My Wishlist</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Track My Order</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Help Ticket</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Shipping Details</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Compare products</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-medium mb-4">Install App</h3>
+                    <p class="text-sm text-gray-600 mb-4">From App Store or Google Play</p>
+                    <div class="flex space-x-2 mb-4">
+                        <a href="#" class="inline-block">
+                            <img src="img/app-store.png" alt="App Store" class="h-8">
+                        </a>
+                        <a href="#" class="inline-block">
+                            <img src="img/google-play.png" alt="Google Play" class="h-8">
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Follow Us</p>
+                    <div class="flex space-x-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-youtube text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-pinterest text-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize wishlist and cart counts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update wishlist count
+            if (typeof updateWishlistCount === 'function') {
+                updateWishlistCount();
+            }
+            
+            // Update cart count
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+            
+            // Form submission handler
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Validate form (simple validation)
+                    if (!name || !email || !subject || !message) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+                    
+                    // Show success message (in a real app, you would send this data to a server)
+                    if (typeof showNotification === 'function') {
+                        showNotification('Your message has been sent successfully!');
+                    } else {
+                        const notification = document.createElement('div');
+                        notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg z-50';
+                        notification.textContent = 'Your message has been sent successfully!';
+                        document.body.appendChild(notification);
+                        
+                        // Remove notification after 3 seconds
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 3000);
+                    }
+                    
+                    // Reset form
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

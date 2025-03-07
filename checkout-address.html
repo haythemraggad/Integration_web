@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Address - Medicare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add scripts -->
+    <script src="js/cart.js" defer></script>
+    <script src="js/wishlist.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Header -->
+    <header class="container mx-auto py-4 px-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <a href="service.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-concierge-bell mr-1"></i>Service
+                </a>
+                <a href="shop.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-store mr-1"></i>Shop
+                </a>
+                <a href="contact.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-phone-alt mr-1"></i>Contact
+                </a>
+            </nav>
+            <div class="flex space-x-4">
+                <div class="relative">
+                    <a href="wishlist.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-heart text-green-500 hover:text-white"></i>
+                        <span class="wishlist-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <div class="relative">
+                    <a href="cart.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-shopping-cart text-green-500 hover:text-white"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <a href="login.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-user text-green-500 hover:text-white"></i>
+                </a>
+                <a href="#" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-globe text-green-500 hover:text-white"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Steps -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-center items-center mb-8">
+            <div class="relative flex items-center">
+                <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold">1</div>
+                <div class="ml-2 text-green-500 font-medium">Select Address</div>
+            </div>
+            <div class="w-16 h-1 bg-gray-300 mx-3"></div>
+            <div class="relative flex items-center">
+                <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 flex items-center justify-center font-bold">2</div>
+                <div class="ml-2 text-gray-400 font-medium">Checkout</div>
+            </div>
+        </div>
+
+        <!-- Checkout Content -->
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Left side - Address Form -->
+            <div class="md:w-2/3">
+                <div class="bg-white p-6 rounded-md shadow-sm border border-green-500">
+                    <div class="flex items-center mb-6">
+                        <div class="w-6 h-6 rounded-full border-2 border-green-500 flex items-center justify-center mr-2">
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <h2 class="text-xl font-semibold">Shipping Address</h2>
+                    </div>
+
+                    <form class="space-y-4" id="address-form">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="flex-1">
+                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="firstName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                <p class="text-red-500 text-xs mt-1 hidden error-message" id="firstName-error">First name is required</p>
+                            </div>
+                            <div class="flex-1">
+                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="lastName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                <p class="text-red-500 text-xs mt-1 hidden error-message" id="lastName-error">Last name is required</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="streetAddress" class="block text-sm font-medium text-gray-700 mb-1">Street Address <span class="text-red-500">*</span></label>
+                            <input type="text" id="streetAddress" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                            <p class="text-red-500 text-xs mt-1 hidden error-message" id="streetAddress-error">Street address is required</p>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="flex-1">
+                                <label for="aptNumber" class="block text-sm font-medium text-gray-700 mb-1">Apt Number</label>
+                                <input type="text" id="aptNumber" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            </div>
+                            <div class="flex-1">
+                                <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State <span class="text-red-500">*</span></label>
+                                <input type="text" id="state" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                <p class="text-red-500 text-xs mt-1 hidden error-message" id="state-error">State is required</p>
+                            </div>
+                            <div class="flex-1">
+                                <label for="zip" class="block text-sm font-medium text-gray-700 mb-1">Zip <span class="text-red-500">*</span></label>
+                                <input type="text" id="zip" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required pattern="[0-9]{5}">
+                                <p class="text-red-500 text-xs mt-1 hidden error-message" id="zip-error">5-digit zip code is required</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required pattern="[0-9]{10}">
+                            <p class="text-red-500 text-xs mt-1 hidden error-message" id="phone-error">Valid 10-digit phone number is required</p>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                            <p class="text-red-500 text-xs mt-1 hidden error-message" id="email-error">Valid email is required</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right side - Order Summary -->
+            <div class="md:w-1/3">
+                <div class="bg-gray-100 p-6 rounded-md">
+                    <button id="proceedButton" class="w-full bg-green-500 text-white py-3 rounded-md font-medium hover:bg-green-600 transition-colors duration-300 mb-4">
+                        Proceed Checkout
+                    </button>
+
+                    <p class="text-sm text-gray-600 mb-6">
+                        By placing your order, you agree to our company
+                        <a href="#" class="text-green-500 hover:underline">Privacy policy</a> and 
+                        <a href="#" class="text-green-500 hover:underline">Conditions of use</a>.
+                    </p>
+
+                    <hr class="my-4 border-gray-300">
+
+                    <h3 class="font-semibold text-lg mb-4">Order Summary</h3>
+
+                    <div id="cart-items-summary" class="mb-4">
+                        <!-- Cart items will be displayed here -->
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Items (<span id="itemCount">0</span>)</span>
+                            <span class="font-medium" id="itemsTotal">0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Shipping and handling</span>
+                            <span class="font-medium" id="shippingCost">5.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Before tax</span>
+                            <span class="font-medium" id="subtotal">0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Tax Collected</span>
+                            <span class="font-medium" id="taxAmount">0.00</span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 border-gray-300">
+
+                    <div class="flex justify-between font-semibold text-lg">
+                        <span>Order Total:</span>
+                        <span id="orderTotal">0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t mt-8 pt-8 pb-16">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between flex-col md:flex-row">
+                <div class="mb-6 md:mb-0">
+                    <div class="logo-container mb-4">
+                        <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                    </div>
+                    <div class="footer-info space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Address</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Call Us</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Email</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-medium mb-4">Account</h3>
+                    <ul class="space-y-2">
+                        <li><a href="login.html" class="text-sm text-gray-600 hover:text-green-500">Sign In</a></li>
+                        <li><a href="cart.html" class="text-sm text-gray-600 hover:text-green-500">View Cart</a></li>
+                        <li><a href="wishlist.html" class="text-sm text-gray-600 hover:text-green-500">My Wishlist</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Track My Order</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Help Ticket</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Shipping Details</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Compare products</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-medium mb-4">Install App</h3>
+                    <p class="text-sm text-gray-600 mb-4">From App Store or Google Play</p>
+                    <div class="flex space-x-2 mb-4">
+                        <a href="#" class="inline-block">
+                            <img src="img/app-store.png" alt="App Store" class="h-8">
+                        </a>
+                        <a href="#" class="inline-block">
+                            <img src="img/google-play.png" alt="Google Play" class="h-8">
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Follow Us</p>
+                    <div class="flex space-x-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-youtube text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-pinterest text-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update wishlist and cart counts
+            if (typeof updateWishlistCount === 'function') {
+                updateWishlistCount();
+            }
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+            
+            // Get cart items and update order summary
+            const cartItems = getCartItems();
+            if (cartItems.length === 0) {
+                alert('Your cart is empty');
+                window.location.href = 'cart.html';
+                return;
+            }
+            
+            // Display cart items
+            const cartItemsContainer = document.getElementById('cart-items-summary');
+            cartItemsContainer.innerHTML = '';
+            
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex justify-between items-center py-2 border-b';
+                itemDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded mr-3">
+                        <div>
+                            <p class="font-medium">${item.name}</p>
+                            <p class="text-sm text-gray-500">Qty: ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <div class="font-medium">${item.currency} ${(item.price * item.quantity).toFixed(2)}</div>
+                `;
+                cartItemsContainer.appendChild(itemDiv);
+            });
+            
+            // Calculate order summary
+            const itemsTotal = calculateCartTotal();
+            const shippingCost = 5.00;
+            const subtotal = itemsTotal + shippingCost;
+            const taxRate = 0.13; // 13% tax rate
+            const taxAmount = subtotal * taxRate;
+            const orderTotal = subtotal + taxAmount;
+            
+            // Update order summary on page
+            document.getElementById('itemCount').textContent = cartItems.length;
+            document.getElementById('itemsTotal').textContent = itemsTotal.toFixed(2);
+            document.getElementById('shippingCost').textContent = shippingCost.toFixed(2);
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('taxAmount').textContent = taxAmount.toFixed(2);
+            document.getElementById('orderTotal').textContent = orderTotal.toFixed(2);
+            
+            // Handle proceed button
+            document.getElementById('proceedButton').addEventListener('click', function() {
+                // Validate form
+                const form = document.getElementById('address-form');
+                const fields = form.querySelectorAll('input[required]');
+                let isValid = true;
+                
+                // Hide all error messages first
+                const errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(msg => msg.classList.add('hidden'));
+                
+                // Check each required field
+                fields.forEach(field => {
+                    // Reset field styling
+                    field.classList.remove('border-red-500');
+                    
+                    // For pattern validation
+                    if (field.pattern && field.value) {
+                        const regex = new RegExp(`^${field.pattern}$`);
+                        if (!regex.test(field.value)) {
+                            isValid = false;
+                            field.classList.add('border-red-500');
+                            const errorMsg = document.getElementById(`${field.id}-error`);
+                            if (errorMsg) errorMsg.classList.remove('hidden');
+                        }
+                    }
+                    
+                    // For required validation
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('border-red-500');
+                        const errorMsg = document.getElementById(`${field.id}-error`);
+                        if (errorMsg) errorMsg.classList.remove('hidden');
+                    }
+                    
+                    // Special validation for email
+                    if (field.type === 'email' && field.value) {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(field.value)) {
+                            isValid = false;
+                            field.classList.add('border-red-500');
+                            const errorMsg = document.getElementById(`${field.id}-error`);
+                            if (errorMsg) errorMsg.classList.remove('hidden');
+                        }
+                    }
+                });
+                
+                if (!isValid) {
+                    return; // Stop if form is invalid
+                }
+                
+                // Collect address data
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const streetAddress = document.getElementById('streetAddress').value;
+                const aptNumber = document.getElementById('aptNumber').value;
+                const state = document.getElementById('state').value;
+                const zip = document.getElementById('zip').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                
+                // Store address data in localStorage
+                const addressData = {
+                    firstName,
+                    lastName,
+                    streetAddress,
+                    aptNumber,
+                    state,
+                    zip,
+                    phone,
+                    email
+                };
+                
+                localStorage.setItem('shippingAddress', JSON.stringify(addressData));
+                
+                // Redirect to payment page
+                window.location.href = 'checkout-payment.html';
+            });
+        });
+    </script>
+</body>
+</html>

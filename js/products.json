@@ -1,0 +1,180 @@
+[
+  {
+    "id": "1",
+    "name": "Fauteuil roulant motorisé",
+    "reference": "JQ4H",
+    "currentPrice": 1785,
+    "oldPrice": 1980,
+    "currency": "TND",
+    "stock": "In Stock",
+    "seller": "Medical+ Official",
+    "rating": 5,
+    "reviews": 10,
+    "description": "Conçu pour offrir un dégré maximal d'indépendance & de stabilité, le fauteuil standard acec propulsion électrique à conduite facile possède 4 roues. Ce fauteuil roulant électrique est spécialement conçu pour les personnes à mobilité réduite ou les personnes âgés.",
+    "features": [
+      "Possède une suspension sur chacune des roues motrices permettant des déplacements dans des terrains divers",
+      "Poids supporté 150 Kg",
+      "Hauteur des accoudoirs et des repose-pieds"
+    ],
+    "technical": {
+      "dimension": "Mi taille, asrtier d'assise 45*42cm",
+      "usage": "Personnes à mobilité réduite ou les personnes âgés"
+    },
+    "prescription": "Unité Propulsion électrique à insister sur les déplacements UMF 1.122.144 confère à domicile Service!!",
+    "image": "img/product2.png",
+    "images": ["img/product2.png", "img/product2-2.png", "img/product2-3.png"],
+    "videos": ["https://www.youtube.com/embed/video_id"],
+    "related": [
+      {
+        "id": "4",
+        "name": "Motorized wheelchair Medical equipment",
+        "price": 450,
+        "oldPrice": 510,
+        "currency": "TND",
+        "image": "img/product4.png"
+      },
+      {
+        "id": "5",
+        "name": "Comen SCD600 pressotherapy device",
+        "price": 430,
+        "oldPrice": 520,
+        "currency": "TND",
+        "image": "img/product5.png"
+      },
+      {
+        "id": "6",
+        "name": "Sensilab 100 LCH",
+        "price": 146.5,
+        "oldPrice": 178,
+        "currency": "TND",
+        "image": "img/product6.png"
+      }
+    ],
+    "categories": ["Medical", "Wheelchair", "Electric"]
+  },
+  {
+    "id": "2",
+    "name": "Nitrile Blue Examination gloves",
+    "reference": "NBE100",
+    "currentPrice": 480,
+    "oldPrice": 550,
+    "currency": "TND",
+    "stock": "In Stock",
+    "seller": "Medical+ Official",
+    "rating": 4,
+    "reviews": 8,
+    "description": "High-quality examination gloves made from nitrile, perfect for medical examinations and procedures. Non-powdered and latex-free for sensitive users.",
+    "features": [
+      "Box of 100 gloves",
+      "Latex-free and powder-free",
+      "Excellent grip and tactile sensitivity"
+    ],
+    "technical": {
+      "material": "Nitrile",
+      "size": "Medium, Large"
+    },
+    "image": "img/product1.png",
+    "related": [],
+    "categories": ["Medical", "Gloves", "Protection"]
+  },
+  {
+    "id": "3",
+    "name": "Lifesion G10PT REIPIROelectric Oxygen Concentrate",
+    "reference": "G10PT",
+    "currentPrice": 2020,
+    "oldPrice": 2350,
+    "currency": "TND",
+    "stock": "In Stock",
+    "seller": "Medical+ Official",
+    "rating": 5,
+    "reviews": 12,
+    "description": "High-performance oxygen concentrator designed for home use. Provides continuous flow of concentrated oxygen for patients with respiratory conditions.",
+    "features": [
+      "Quiet operation",
+      "Energy efficient",
+      "Easy to use controls"
+    ],
+    "technical": {
+      "flow_rate": "0.5-5 LPM",
+      "noise_level": "<40dB"
+    },
+    "image": "img/product3.png",
+    "related": [],
+    "categories": ["Medical", "Respiratory", "Home Care"]
+  },
+  {
+    "id": "4",
+    "name": "Motorized wheelchair Medical equipment",
+    "reference": "MW200",
+    "currentPrice": 450,
+    "oldPrice": 510,
+    "currency": "TND",
+    "stock": "In Stock",
+    "seller": "Medical+ Official",
+    "rating": 4,
+    "reviews": 7,
+    "description": "Standard motorized wheelchair designed for comfort and mobility. Suitable for indoor and outdoor use on smooth surfaces.",
+    "features": [
+      "Adjustable armrests",
+      "Foldable design",
+      "Battery powered"
+    ],
+    "technical": {
+      "weight_capacity": "120 kg",
+      "battery_life": "Up to 15 miles"
+    },
+    "image": "img/product4.png",
+    "related": [],
+    "categories": ["Medical", "Wheelchair", "Mobility"]
+  },
+  {
+    "id": "5",
+    "name": "Comen SCD600 pressotherapy device",
+    "reference": "SCD600",
+    "currentPrice": 430,
+    "oldPrice": 520,
+    "currency": "TND",
+    "stock": "In Stock",
+    "seller": "Medical+ Official",
+    "rating": 4,
+    "reviews": 5,
+    "description": "Professional pressotherapy device for lymphatic drainage and improved circulation. Used in medical and aesthetic settings.",
+    "features": [
+      "Multiple pressure settings",
+      "Programmable treatments",
+      "Digital controls"
+    ],
+    "technical": {
+      "pressure_range": "20-200 mmHg",
+      "programs": "6 preset programs"
+    },
+    "image": "img/product5.png",
+    "related": [],
+    "categories": ["Medical", "Therapy", "Circulation"]
+  },
+  {
+    "id": "6",
+    "name": "Lifesime 7A01PT Electric Surgical Aspirator",
+    "reference": "7A01PT",
+    "currentPrice": 17,
+    "oldPrice": 19,
+    "currency": "TND",
+    "stock": "In Stock",
+    "seller": "Medical+ Official",
+    "rating": 5,
+    "reviews": 9,
+    "description": "Portable surgical aspirator for medical procedures. Powerful suction in a compact design.",
+    "features": [
+      "Portable and lightweight",
+      "Adjustable suction power",
+      "Easy to clean"
+    ],
+    "technical": {
+      "suction_power": "Up to 0.08 MPa",
+      "noise_level": "<65dB"
+    },
+    "image": "img/product6.png",
+    "related": [],
+    "categories": ["Medical", "Surgical", "Aspiration"]
+  }
+]

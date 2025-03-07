@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add scripts -->
+    <script src="js/cart.js" defer></script>
+    <script src="js/wishlist.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body class="bg-white font-sans text-gray-800">
+    <!-- Header -->
+    <header class="container mx-auto py-4 px-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <div>
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                    </a>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-green-500 border-b-2 border-green-500 font-medium flex items-center">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <a href="service.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-concierge-bell mr-1"></i>Service
+                </a>
+                <a href="shop.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-store mr-1"></i>Shop
+                </a>
+                <a href="contact.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-phone-alt mr-1"></i>Contact
+                </a>
+            </nav>
+            <div class="flex space-x-4">
+                <div class="relative">
+                    <a href="wishlist.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-heart text-green-500 hover:text-white"></i>
+                        <span class="wishlist-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <div class="relative">
+                    <a href="cart.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-shopping-cart text-green-500 hover:text-white"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <a href="login.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-user text-green-500 hover:text-white"></i>
+                </a>
+                <a href="#" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-globe text-green-500 hover:text-white"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-6">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0">
+                <h1 class="uppercase text-xl md:text-2xl font-bold text-gray-800 mb-2">Manage your health<br>with ease</h1>
+                <p class="text-gray-600 mb-6">
+                    Find certified medical products,<br>
+                    baby care and more. Fast<br>
+                    delivery and dedicated customer<br>
+                    service! Order with confidence.
+                </p>
+                <div class="flex">
+                    <input type="text" placeholder="Search products..." class="px-4 py-2 border border-gray-300 rounded-l-md w-full md:w-64">
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-r-md hover:bg-green-600">
+                        Search
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="img/homebanner.png" alt="Medical Care" class="rounded-lg shadow-md">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="container mx-auto px-4 py-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Featured Products</h2>
+        
+        <div id="featured-products" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Product Cards will be dynamically inserted here -->
+            <div class="col-span-full text-center py-8">
+                <div class="animate-spin inline-block w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full"></div>
+                <p class="mt-2 text-gray-600">Loading products...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t mt-8 pt-8 pb-16">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between flex-col md:flex-row">
+                <div class="mb-6 md:mb-0">
+                    <div class="logo-container mb-4">
+                        <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                    </div>
+                    <div class="footer-info space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Address</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Call Us</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Email</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-600">Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-medium mb-4">Account</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Sign In</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">View Cart</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">My Wishlist</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Track My Order</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Help Ticket</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Shipping Details</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-green-500">Compare products</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-medium mb-4">Install App</h3>
+                    <p class="text-sm text-gray-600 mb-4">From App Store or Google Play</p>
+                    <div class="flex space-x-2 mb-4">
+                        <a href="#" class="inline-block">
+                            <img src="img/app-store.png" alt="App Store" class="h-8">
+                        </a>
+                        <a href="#" class="inline-block">
+                            <img src="img/google-play.png" alt="Google Play" class="h-8">
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Follow Us</p>
+                    <div class="flex space-x-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-youtube text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                            <i class="fab fa-pinterest text-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variable to store products
+        let allProducts = [];
+        
+        // Function to load products from JSON file
+        function loadProducts() {
+            fetch('js/products.json')
+                .then(response => response.json())
+                .then(products => {
+                    // Store all products
+                    allProducts = products;
+                    
+                    // Display featured products
+                    displayFeaturedProducts(products);
+                })
+                .catch(error => {
+                    console.error('Error loading products:', error);
+                    const productsContainer = document.getElementById('featured-products');
+                    if (productsContainer) {
+                        productsContainer.innerHTML = `
+                            <div class="col-span-full text-center py-8">
+                                <p class="text-red-500">Failed to load products. Please try again later.</p>
+                            </div>
+                        `;
+                    }
+                });
+        }
+        
+        // Function to display featured products
+        function displayFeaturedProducts(products) {
+            const productsContainer = document.getElementById('featured-products');
+            
+            if (!productsContainer) {
+                console.error('Featured products container not found');
+                return;
+            }
+            
+            // Clear loading indicator
+            productsContainer.innerHTML = '';
+            
+            // Display all products instead of just 4
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white border rounded-lg p-4 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300';
+                
+                // Format the prices
+                const currentPrice = `${product.currentPrice.toFixed(2)}`;
+                const oldPrice = product.oldPrice ? `${product.oldPrice.toFixed(2)}` : '';
+                
+                productCard.innerHTML = `
+                    <div class="mb-4 flex justify-center overflow-hidden relative">
+                        <a href="product-details.html?id=${product.id}">
+                            <img src="${product.image}" alt="${product.name}" class="h-40 object-contain transform hover:scale-105 transition-transform duration-300">
+                        </a>
+                        <button class="wishlist-btn absolute top-2 right-2 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-200" data-product-id="${product.id}">
+                            <i class="fas fa-heart text-gray-400 hover:text-red-500"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-2">
+                        <span class="product-price text-green-600 font-bold" data-price="${product.currentPrice}" data-currency="${product.currency}">${currentPrice} ${product.currency}</span>
+                        ${oldPrice ? `<span class="text-gray-400 line-through text-sm ml-2">${oldPrice} ${product.currency}</span>` : ''}
+                    </div>
+                    <div class="flex justify-end mb-2">
+                        <button class="add-to-cart-btn bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600 transition-colors duration-300" data-product-id="${product.id}">Add to Cart</button>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-center">${product.name}</h3>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productCard);
+            });
+            
+            // Initialize wishlist buttons
+            if (typeof setupWishlistButtons === 'function') {
+                setupWishlistButtons();
+            }
+            
+            // Add event listeners to "Add to Cart" buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.dataset.productId;
+                    const product = allProducts.find(p => p.id === productId);
+                    
+                    if (product && typeof addToCart === 'function') {
+                        addToCart(product, 1);
+                        
+                        // Show notification
+                        if (typeof showNotification === 'function') {
+                            showNotification(`${product.name} added to cart!`);
+                        } else {
+                            const notification = document.createElement('div');
+                            notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg z-50';
+                            notification.textContent = `${product.name} added to cart!`;
+                            document.body.appendChild(notification);
+                            
+                            // Remove notification after 3 seconds
+                            setTimeout(() => {
+                                notification.remove();
+                            }, 3000);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Load products when the page loads
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>

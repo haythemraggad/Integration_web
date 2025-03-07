@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success - Medicare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add scripts -->
+    <script src="js/cart.js" defer></script>
+    <script src="js/wishlist.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <style>
+        .receipt {
+            position: relative;
+        }
+        .receipt:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background-image: linear-gradient(135deg, white 25%, transparent 25%), 
+                              linear-gradient(225deg, white 25%, transparent 25%);
+            background-size: 20px 20px;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Header -->
+    <header class="container mx-auto py-4 px-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Medicare+ Logo" class="h-7">
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <a href="service.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-concierge-bell mr-1"></i>Service
+                </a>
+                <a href="shop.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-store mr-1"></i>Shop
+                </a>
+                <a href="contact.html" class="text-gray-500 hover:text-green-500 flex items-center">
+                    <i class="fas fa-phone-alt mr-1"></i>Contact
+                </a>
+            </nav>
+            <div class="flex space-x-4">
+                <div class="relative">
+                    <a href="wishlist.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-heart text-green-500 hover:text-white"></i>
+                        <span class="wishlist-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <div class="relative">
+                    <a href="cart.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-shopping-cart text-green-500 hover:text-white"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+                <a href="login.html" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-user text-green-500 hover:text-white"></i>
+                </a>
+                <a href="#" class="bg-green-50 rounded-full p-2 flex items-center justify-center w-10 h-10 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-globe text-green-500 hover:text-white"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Payment Success Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+            <!-- Success Message -->
+            <div class="bg-green-500 p-6 text-center">
+                <div class="flex justify-center mb-4">
+                    <div class="bg-white rounded-full p-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-2xl font-bold text-white mb-2">Payment Successful!</h1>
+                <p class="text-white text-opacity-90" id="paymentStatusText">Your order has been received and is being processed.</p>
+                
+                <!-- Crypto Payment Status (Initially hidden) -->
+                <div id="cryptoPaymentStatus" class="mt-4 hidden">
+                    <div class="bg-white rounded-lg p-3 text-left">
+                        <h3 class="text-gray-800 font-semibold mb-2">Cryptocurrency Payment Status</h3>
+                        <div class="flex items-center">
+                            <div class="relative pt-1 flex-1">
+                                <div class="flex mb-2 items-center justify-between">
+                                    <div>
+                                        <span id="cryptoStatusText" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full bg-yellow-200 text-yellow-800">
+                                            Waiting for payment
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="flex h-2 mb-4 overflow-hidden text-xs bg-gray-200 rounded">
+                                    <div id="cryptoStatusProgress" class="flex flex-col justify-center text-center text-white bg-yellow-500 shadow-none whitespace-nowrap" style="width: 33%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600" id="cryptoStatusMessage">Please send the requested amount to the address provided to you.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Information -->
+            <div class="p-6 border-t border-gray-200">
+                <h2 class="text-lg font-semibold mb-4">Payment Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-600">Payment Method</p>
+                        <p class="font-medium" id="paymentMethod">Credit Card</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Date</p>
+                        <p class="font-medium" id="paymentDate">June 1, 2023</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Reference Number</p>
+                        <p class="font-medium" id="referenceNumber">#REF12345</p>
+                    </div>
+                    <div id="cryptoDetails" class="hidden">
+                        <p class="text-sm text-gray-600">Cryptocurrency</p>
+                        <p class="font-medium" id="cryptoType">BTC</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Purchased Items -->
+            <div id="purchasedItems" class="p-6 border-t border-gray-200">
+                <h2 class="text-lg font-semibold mb-4">Purchased Items</h2>
+                <!-- Items will be inserted here -->
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex justify-center mt-8 space-x-4">
+            <a href="index.html" class="px-6 py-3 bg-green-500 text-white rounded-md font-medium hover:bg-green-600 transition-colors duration-300">
+                Back to Home
+            </a>
+            <a href="shop.html" class="px-6 py-3 bg-gray-200 text-gray-800 rounded-md font-medium hover:bg-gray-300 transition-colors duration-300">
+                Continue Shopping
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">About Us</h3>
+                    <p class="text-gray-400 text-sm">
+                        Medicare+ is dedicated to providing high-quality healthcare products and services to improve your wellbeing.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">Shop</a></li>
+                        <li><a href="#" class="hover:text-white">Services</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Return Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Subscribe to our newsletter for updates and special offers.
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400 text-center">
+                <p> 2023 Medicare+. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentMethod = urlParams.get('method') || 'Credit Card';
+            const total = urlParams.get('total') || '$0.00';
+            const refNumber = urlParams.get('ref') || '#REF12345';
+            
+            // Set payment details
+            document.getElementById('paymentMethod').textContent = paymentMethod;
+            document.getElementById('referenceNumber').textContent = refNumber;
+            
+            // Get and format current date
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('paymentDate').textContent = today.toLocaleDateString('en-US', options);
+            
+            // Set total price
+            const totalElements = document.querySelectorAll('.total-price');
+            totalElements.forEach(element => {
+                element.textContent = total;
+            });
+            
+            // Handle cryptocurrency payment status if applicable
+            if (paymentMethod.includes('Cryptocurrency')) {
+                // Extract cryptocurrency type from payment method
+                const cryptoMatch = paymentMethod.match(/\((.*?)\)/);
+                if (cryptoMatch && cryptoMatch[1]) {
+                    const cryptoType = cryptoMatch[1];
+                    document.getElementById('cryptoType').textContent = cryptoType;
+                    document.getElementById('cryptoDetails').classList.remove('hidden');
+                }
+                
+                // Show cryptocurrency payment status section
+                document.getElementById('cryptoPaymentStatus').classList.remove('hidden');
+                
+                // Update main status text
+                document.getElementById('paymentStatusText').textContent = 'Your cryptocurrency payment is being processed.';
+                
+                // In a real implementation, this would check the payment status:
+                // This is a simulation of payment status checking
+                setTimeout(() => {
+                    // Simulating payment confirmation after 5 seconds
+                    document.getElementById('cryptoStatusText').textContent = 'Confirming';
+                    document.getElementById('cryptoStatusText').className = 'text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full bg-blue-200 text-blue-800';
+                    document.getElementById('cryptoStatusProgress').style.width = '66%';
+                    document.getElementById('cryptoStatusProgress').className = 'flex flex-col justify-center text-center text-white bg-blue-500 shadow-none whitespace-nowrap';
+                    document.getElementById('cryptoStatusMessage').textContent = 'We have detected your payment and are waiting for blockchain confirmations.';
+                    
+                    setTimeout(() => {
+                        // Simulating complete confirmation after 10 seconds
+                        document.getElementById('cryptoStatusText').textContent = 'Confirmed';
+                        document.getElementById('cryptoStatusText').className = 'text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full bg-green-200 text-green-800';
+                        document.getElementById('cryptoStatusProgress').style.width = '100%';
+                        document.getElementById('cryptoStatusProgress').className = 'flex flex-col justify-center text-center text-white bg-green-500 shadow-none whitespace-nowrap';
+                        document.getElementById('cryptoStatusMessage').textContent = 'Your payment has been confirmed! Your account balance has been updated.';
+                    }, 5000);
+                }, 5000);
+                
+                // In a real implementation, this would poll the server:
+                // const checkPaymentStatus = () => {
+                //     const paymentId = localStorage.getItem('cryptoPaymentId');
+                //     if (!paymentId) return;
+                //     
+                //     fetch('/api/check-payment-status', {
+                //         method: 'POST',
+                //         headers: { 'Content-Type': 'application/json' },
+                //         body: JSON.stringify({ paymentId })
+                //     })
+                //     .then(response => response.json())
+                //     .then(data => {
+                //         // Update status UI based on response
+                //         updatePaymentStatusUI(data.status);
+                //         
+                //         // If not final status, check again in 30 seconds
+                //         if (data.status !== 'confirmed' && data.status !== 'failed') {
+                //             setTimeout(checkPaymentStatus, 30000);
+                //         }
+                //     });
+                // };
+                // 
+                // checkPaymentStatus();
+            }
+            
+            // Get cart items from local storage
+            const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+            
+            // Generate purchased items HTML
+            const purchasedItemsContainer = document.getElementById('purchasedItems');
+            if (purchasedItemsContainer && cartItems.length > 0) {
+                cartItems.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex items-center py-4 border-b border-gray-200';
+                    itemElement.innerHTML = `
+                        <div class="w-16 h-16 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-center object-cover">
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <h3 class="text-base font-medium text-gray-900">${item.name}</h3>
+                            <p class="text-sm text-gray-500">Qty: ${item.quantity}</p>
+                        </div>
+                        <p class="ml-4 text-base font-medium text-gray-900">$${(item.price * item.quantity).toFixed(2)}</p>
+                    `;
+                    purchasedItemsContainer.appendChild(itemElement);
+                });
+            }
+            
+            // Clear cart after successful purchase
+            localStorage.removeItem('cart');
+            localStorage.removeItem('shippingAddress');
+            
+            // Update cart count
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+        });
+    </script>
+</body>
+</html>
